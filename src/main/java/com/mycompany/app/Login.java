@@ -11,6 +11,7 @@ import java.io.IOException;
 public class Login implements ActionListener {
     GetPropertyValues properties = new GetPropertyValues();
 
+    JPanel panel;
     Integer width;
     Integer height;
 
@@ -25,15 +26,9 @@ public class Login implements ActionListener {
 
 
     public void init(JPanel panel, GridBagConstraints constraints) {
+        this.panel = panel;
         LoginScreen(panel, constraints);
 
-//        Transaction transaction = new Transaction(1, 1, "Paris", 500.00);
-//        SessionFactory sessionFactory = HibernateUtil.getSessionAnnotationFactory();
-//        Session session = sessionFactory.getCurrentSession();
-//        session.beginTransaction();
-//        session.save(transaction);
-//        session.getTransaction().commit();
-//        sessionFactory.close();
     }
 
     private void LoginScreen(JPanel panel, GridBagConstraints constraints) {
@@ -42,6 +37,7 @@ public class Login implements ActionListener {
          * to null
          */
         panel.setLayout(new GridBagLayout());
+        Insets inset = new Insets(5, 5, 5, 5);
 
         // Creating JLabel
         JLabel userLabel = new JLabel("User");
@@ -64,24 +60,28 @@ public class Login implements ActionListener {
         JPasswordField passwordText = new JPasswordField(20);
         constraints.gridx = 1;
         constraints.gridy = 1;
+        constraints.insets = inset;
         panel.add(passwordText, constraints);
 
-        JButton loginButton = new JButton("login");
+        JButton loginButton = new JButton("Login");
         constraints.gridx = 1;
         constraints.gridy = 2;
         panel.add(loginButton, constraints);
 
-        JButton registerButton = new JButton("register");
-        Insets inset = new Insets(5, 5, 5, 5);
+        JButton registerButton = new JButton("Register");
         constraints.gridx = 1;
         constraints.gridy = 3;
         constraints.insets = inset;
         panel.add(registerButton, constraints);
+        registerButton.addActionListener(this);
 
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        RegisterScreen registerScreen = new RegisterScreen();
+        registerScreen.init();
+
 
     }
 }

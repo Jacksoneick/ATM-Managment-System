@@ -6,8 +6,8 @@ import javax.persistence.*;
 @Table(name = "user")
 public class User {
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Column(name = "transactionID", nullable = false, unique = true)
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    @Column(name = "userId", nullable = false, unique = true)
     private Integer userId;
 
     @Column(name = "firstName")
@@ -17,10 +17,14 @@ public class User {
     private String lastName;
 
     @Column(name = "balance")
-    private Float balance;
+    private Double balance;
 
-    public User(Integer userId, String firstName, String lastName, Float balance) {
+    @Column(name = "userName")
+    String userName;
+
+    public User(Integer userId, String userName, String firstName, String lastName, Double balance) {
         this.userId = userId;
+        this.userName = userName;
         this.firstName = firstName;
         this.lastName = lastName;
         this.balance = balance;
@@ -38,7 +42,7 @@ public class User {
         return lastName;
     }
 
-    public Float getBalance() {
+    public Double getBalance() {
         return balance;
     }
 }
