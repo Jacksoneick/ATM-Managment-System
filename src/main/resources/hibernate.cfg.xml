@@ -16,7 +16,7 @@
         <property name="hibernate.current_session_context_class">thread</property>
 
         <!-- Mapping with model class containing annotations -->
-        <mapping class="com.mycompany.app.Transaction"/>
-        <mapping class="com.mycompany.app.User"/>
+        <mapping class="com.mycompany.storage.Transaction"/>
+        <mapping class="com.mycompany.storage.User"/>
     </session-factory>
 </hibernate-configuration>

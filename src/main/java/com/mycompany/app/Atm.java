@@ -1,9 +1,12 @@
 package com.mycompany.app;
 
+import com.mycompany.screens.Login;
 import com.mycompany.util.GetPropertyValues;
+import com.mycompany.util.HibernateUtil;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 
 import javax.swing.*;
-import java.awt.*;
 import java.io.IOException;
 
 public class Atm {
@@ -11,6 +14,7 @@ public class Atm {
     Integer width;
     Integer height;
     String useSystemTheme;
+    JPanel activeScreen;
 
     {
         try {
@@ -22,9 +26,9 @@ public class Atm {
         }
     }
 
-    public void init() {
+    public Atm() {
         //Check config and determine with theme to use.
-        if (useSystemTheme == "true") {
+        if (useSystemTheme.equals("true")) {
             try {
                 UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
             } catch (Exception e) {
@@ -37,15 +41,16 @@ public class Atm {
         frame.setSize(width, height);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        // Setup Hibernate session
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        Session session = sessionFactory.getCurrentSession();
 
-        JPanel panel = new JPanel(new GridBagLayout());
-        GridBagConstraints constraints = new GridBagConstraints();
+        Login login = new Login(frame, session);
 
-        frame.add(panel);
-
-        Login login = new Login();
-        login.init(panel, constraints);
+        // Center the frame on the screen
+        frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 
     }
+
 }

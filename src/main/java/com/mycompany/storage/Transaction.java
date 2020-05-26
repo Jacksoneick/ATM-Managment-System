@@ -1,4 +1,4 @@
-package com.mycompany.app;
+package com.mycompany.storage;
 
 import javax.persistence.*;
 
@@ -25,5 +25,9 @@ public class Transaction {
         this.userId = userId;
         this.location = location;
         this.amount = amount;
+    }
+
+    public Transaction(){
+
     }
 }
